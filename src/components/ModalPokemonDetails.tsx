@@ -33,7 +33,7 @@ export default function ModalPokemonDetails({
         justifyContent: "center",
       }}
     >
-      <div className="bg-white min-w-3xl min-h-1/2 rounded-2xl flex flex-col animate-zoom-in animate-duration-100">
+      <div className="bg-white mx-10 min-h-1/2 rounded-2xl flex flex-col animate-zoom-in animate-duration-100">
         <div
           onClick={(e) => e.stopPropagation()}
           id={"card_" + pokemon.name}
@@ -46,11 +46,12 @@ export default function ModalPokemonDetails({
           >
             X
           </button>
-          <div className="self-center flex justify-center">
+          <div className="self-center flex justify-center items-center px-10">
             <img
-              src={pokemon?.sprites.front_default}
+              // src={pokemon?.sprites.front_default}
+              src={"/src/assets/sprites/pokemon/"+ pokemon?.id + ".gif"}
               alt={pokemon?.name}
-              className="size-45"
+              className="size-fit"
             />
             <div className="flex flex-col justify-between p-6">
               <div>
@@ -65,7 +66,7 @@ export default function ModalPokemonDetails({
             </div>
           </div>
         </div>
-        <div className="grow flex items-center justify-center">
+        <div className="grow flex items-center justify-center px-10">
           <BaseStats stats={pokemon?.stats} />
         </div>
       </div>

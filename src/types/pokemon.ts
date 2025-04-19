@@ -2,6 +2,7 @@ import PokemonType from "./pokemon_type"
 import type Stat from "./stat"
 
 export default interface Pokemon {
+    id: number,
     order: number,
     name: string,
     height: number,
