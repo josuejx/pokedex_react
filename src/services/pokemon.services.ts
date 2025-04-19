@@ -1,4 +1,5 @@
 import type Pokemon from "../types/pokemon"
+import PokemonType from "../types/pokemon_type"
 
 export default class PokemonService {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,5 +30,26 @@ export default class PokemonService {
         }
 
         return pokemon
+    }
+
+    static async fetchTypes(types: PokemonType[]): Promise<PokemonType[]> {
+        const typePromises = types.map(async (type) => {
+            const response = await fetch(type.type.url)
+            if (response.ok) {
+                return response.json()
+            }
+            return null
+        })
+
+        const typeData = await Promise.all(typePromises)
+        return types.map((value, index) => {
+            return {
+                ...value,
+                type: {
+                    ...value.type,
+                    id: typeData[index].id,
+                }
+            }
+        })
     }
 }
