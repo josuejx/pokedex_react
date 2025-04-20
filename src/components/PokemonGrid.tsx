@@ -3,6 +3,7 @@ import PokemonService from "../services/pokemon.services";
 import PokemonCard from "./PokemonCard";
 import ModalPokemonDetails from "./ModalPokemonDetails";
 import Pokemon from "../types/pokemon";
+import LoadingSpinner from "./LoadingSpinner";
 
 export default function PokemonGrid() {
   const [pokemons, setPokemons] = useState<{ name: string; url: string }[]>([]);
@@ -45,7 +46,9 @@ export default function PokemonGrid() {
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center">
+      <LoadingSpinner />
+    </div>;
   } else {
     return (
       <div>
